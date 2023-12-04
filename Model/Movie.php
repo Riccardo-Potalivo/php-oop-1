@@ -2,12 +2,22 @@
 
 class Movie
 {
-    public int $id;
-    public string $title;
-    function __construct($id, $title)
+    private int $id;
+    private string $title;
+    private string $poster_path;
+    function __construct($id, $title, $img)
     {
         $this->id = $id;
         $this->title = $title;
+        $this->poster_path = $img;
+    }
+
+    public function printCArd()
+    {
+        $img = $this->poster_path;
+        $title = $this->title;
+
+        include __DIR__ . '/../Views/card.php';
     }
 
 }
@@ -17,16 +27,12 @@ $movieList = json_decode($movieDb, true);
 $movies = [];
 
 foreach ($movieList as $movie) {
-    $movies[] = new Movie($movie['id'], $movie['title']);
+    $movies[] = new Movie($movie['id'], $movie['title'], $movie['poster_path']);
 }
 
-var_dump($movies[0]);
-echo $movies[0]->id;
-echo $movies[0]->title;
+// var_dump($movies[0]);
 
-var_dump($movies[1]);
-echo $movies[1]->id;
-echo $movies[1]->title;
+// var_dump($movies[1]);
 
 
 ?>
