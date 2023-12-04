@@ -5,6 +5,17 @@
             <h5 class="card-title">
                 <?= $title ?>
             </h5>
+            <div>
+                <?= $lang ?>
+            </div>
+            <p class="card-text">
+                <?= $overview ?>
+            </p>
+            <div class="d-flex justify-content-between align-items-flex-start">
+                <div>
+                    <?= $vote ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>
