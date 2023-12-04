@@ -1,4 +1,5 @@
 <?php
+include __DIR__ . '/Genre.php';
 
 class Movie
 {
@@ -8,7 +9,8 @@ class Movie
     private string $overview;
     private string $vote_average;
     private string $original_language;
-    function __construct($id, $title, $img, $overview, $vote, $lang)
+    public Genre $genre;
+    function __construct($id, $title, $img, $overview, $vote, $lang, Genre $genre)
     {
         $this->id = $id;
         $this->title = $title;
@@ -16,6 +18,7 @@ class Movie
         $this->overview = $overview;
         $this->vote_average = $vote;
         $this->original_language = $lang;
+        $this->genre = $genre;
     }
 
     public function printCArd()
@@ -25,23 +28,35 @@ class Movie
         $lang = $this->original_language;
         $overview = $this->overview;
         $vote = $this->vote_average;
+        $genre = $this->genre->name;
 
         include __DIR__ . '/../Views/card.php';
     }
 
 }
 
+
+
 $movieDb = file_get_contents(__DIR__ . '/movie_db.json');
 $movieList = json_decode($movieDb, true);
 $movies = [];
 
 foreach ($movieList as $movie) {
-    $movies[] = new Movie($movie['id'], $movie['title'], $movie['poster_path'], $movie['overview'], $movie['vote_average'], $movie['original_language']);
+
+    $genremovie = new Genre($genres[$randgenres[0]]);
+
+
+    $randgenres = [rand(0, count($genres) - 1)];
+    var_dump($genres[$randgenres[0]]);
+
+
+    $movies[] = new Movie($movie['id'], $movie['title'], $movie['poster_path'], $movie['overview'], $movie['vote_average'], $movie['original_language'], $genremovie);
 }
 
-// var_dump($movies[0]);
+var_dump($movies);
 
 // var_dump($movies[1]);
+var_dump($genres);
 
 
 ?>

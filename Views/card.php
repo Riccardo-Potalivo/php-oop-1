@@ -15,6 +15,9 @@
                 <div>
                     <?= $vote ?>
                 </div>
+                <div>
+                    <?= $genre ?>
+                </div>
             </div>
         </div>
     </div>
